@@ -1,0 +1,16 @@
+# ===== أمان بيانات المالك: ملفات التشغيل الحيّة لا تُرفع لأي مستودع أبدًا =====
+data/data.json
+data/data.json.safe
+data/data.json.bak
+data/customers.json
+data/customers.json.safe
+data/customers.json.bak
+data/db-config.json
+data/db-config.json.*
+data/stats.json
+data/login-attempts.json
+data/backups/*
+!data/backups/.gitkeep
+node_modules/
+*.log
+.DS_Store
