@@ -14,11 +14,11 @@
 # 1) عدّل رابط المستودع في السطر المخصص (سطر واحد فقط)
 nano ~/public_html/../furat-setup.env 2>/dev/null || true
 # أو حرر مباشرة بعد أول استنساخ يدوي:
-git clone https://github.com/USERNAME/furat-halwa.git ~/furat-src
+git clone https://github.com/FerasFuad34/furat-push.git ~/furat-src
 nano ~/furat-src/deploy/furat-deploy.sh   # عدّل REPO_URL الافتراضي (اختياري — أو صدّره بيئيًا)
 
 # 2) شغّله يدويًا مرة للتأكد (يطابق ما سيفعله cron)
-export FURAT_REPO_URL="https://github.com/USERNAME/furat-halwa.git"
+export FURAT_REPO_URL="https://github.com/FerasFuad34/furat-push.git"
 bash ~/furat-src/deploy/furat-deploy.sh
 ```
 

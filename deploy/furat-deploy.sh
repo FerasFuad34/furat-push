@@ -9,7 +9,7 @@
 set -u
 
 # ⚙️ عدّل السطر الوحيد هذا عند أول تشغيل — رابط المستودع الخاص بكم
-REPO_URL="${FURAT_REPO_URL:-https://github.com/USERNAME/furat-halwa.git}"
+REPO_URL="${FURAT_REPO_URL:-https://github.com/FerasFuad34/furat-push.git}"
 
 HOME_DIR="${FURAT_HOME:-$(getent passwd "$(id -un)" | cut -d: -f6)}"
 REPO="$HOME_DIR/furat-src"
