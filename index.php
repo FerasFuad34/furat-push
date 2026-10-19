@@ -199,7 +199,7 @@ if ($METHOD === 'GET') {
 }
 
 /* ---------- API عام للقراءة ---------- */
-if ($PATH === '/api/data' && $METHOD === 'GET') fh_json($D);
+if ($PATH === '/api/data' && $METHOD === 'GET') { $pub = $D; unset($pub['settings']['loginMode']); fh_json($pub); }
 
 /* ---------- لوحة التحكم ---------- */
 if ($PATH === '/admin' || $PATH === '/admin/') {
@@ -214,17 +214,46 @@ if ($PATH === '/admin/login' && $METHOD === 'GET') {
   readfile(FH_DATA . '/admin/login.html');
   exit;
 }
+if ($PATH === '/api/login/mode' && $METHOD === 'GET') {
+  fh_init();
+  fh_json(['mode' => fh_loginMode(), 'hasFace' => fh_hasFace()]);
+}
+if ($PATH === '/admin/face-grid' && $METHOD === 'GET') {
+  fh_init();
+  if (fh_loginMode() === 'pin' || !fh_hasFace()) { fh_json(['error' => 'n/a'], 404); }
+  $pos = random_int(0, 8);
+  $cells = [];
+  for ($i = 0; $i < 9; $i++) $cells[] = ($i === $pos) ? fh_faceAvatarDataUri() : fh_faceDecoDataUri($i, $pos);
+  $tok = fh_faceIssue($pos);
+  @file_put_contents(FH_DATA . '/face-chal', hash('sha256', $tok)); /* كل شبكة تلغي سابقتها: تخمين واحد لكل خلط */
+  fh_json(['cells' => $cells, 't' => $tok]);
+}
 if ($PATH === '/admin/login' && $METHOD === 'POST') {
   $ip = fh_clientIp();
   $now = fh_ms();
   $n = fh_throttleCount($ip);
-  if ($n >= 8) {
+  $cap = 8;
+  if (preg_match('/"face"/', (string)file_get_contents('php://input') ?: '')) $cap = 4; /* وضع الوجه: 4 محاولات لا 8 */
+  if ($n >= $cap) {
     header('Retry-After: 600');
     fh_json(['ok' => false, 'error' => 'محاولات كثيرة خاطئة — انتظر 10 دقائق ثم أعد المحاولة'], 429);
   }
   $b = fh_readBody() ?: [];
   $pin = trim((string)($b['pin'] ?? ''));
-  if ($pin !== '' && fh_hashPin($pin) === fh_pinHash()) {
+  fh_init();
+  $mode = fh_loginMode();
+  $okPin = $pin !== '' && fh_hashPin($pin) === fh_pinHash();
+  $okFace = false;
+  if ($mode !== 'pin') {
+    $fc = is_array($b['face'] ?? null) ? $b['face'] : [];
+    $okFace = fh_faceVerify((string)($fc['t'] ?? ''), (int)($fc['g'] ?? -1));
+  }
+  if ($mode !== 'pin') {
+    $okFace = $okFace && hash_equals((string)@file_get_contents(FH_DATA . '/face-chal'), hash('sha256', (string)($fc['t'] ?? '')));
+    @unlink(FH_DATA . '/face-chal'); /* استُخدم — الشبكة تحتاج خلطًا جديدًا */
+  }
+  $grant = ($mode === 'pin' && $okPin) || ($mode === 'face' && $okFace) || ($mode === 'both' && $okPin && $okFace);
+  if ($grant) {
     fh_throttleClear($ip);
     fh_json(['ok' => true, 'token' => fh_newToken()]);
   }
@@ -240,7 +269,7 @@ if ($PATH === '/admin/logout') {
 /* ---------- نقاط اللوحة المحمية ---------- */
 if ($PATH === '/api/admin/meta' && $METHOD === 'GET') {
   if (!fh_isAdmin()) fh_json(['error' => 'unauthorized'], 401);
-  fh_json(['defaultPin' => fh_isDefaultPin()]);
+  fh_json(['defaultPin' => fh_isDefaultPin(), 'loginMode' => fh_loginMode(), 'hasFace' => fh_hasFace()]);
 }
 if ($PATH === '/api/admin/backup' && $METHOD === 'GET') {
   if (!fh_isAdmin()) fh_json(['error' => 'unauthorized'], 401);
@@ -294,6 +323,27 @@ if ($PATH === '/api/admin/customers' && $METHOD === 'POST') {
     fh_snapshot();
     fh_json(['ok' => true, 'saved' => fh_nowIso()]);
   } catch (Throwable $e) { fh_json(['error' => $e->getMessage()], 500); }
+}
+if ($PATH === '/api/admin/face' && $METHOD === 'POST') {
+  if (!fh_isAdmin()) fh_json(['error' => 'unauthorized'], 401);
+  $f = $_FILES['img'] ?? null;
+  if (!$f || (int)($f['error'] ?? 1) !== UPLOAD_ERR_OK || (int)$f['size'] > 8 * 1024 * 1024 || !preg_match('/^image\/(jpeg|png|webp)$/', (string)($f['type'] ?? '')))
+    fh_json(['ok' => false, 'error' => 'صورة غير صالحة (jpeg/png/webp حتى 8MB)'], 400);
+  $img = fh_imageLoad((string)$f['tmp_name'], (string)$f['type']);
+  if (!$img) fh_json(['ok' => false, 'error' => 'تعذر قراءة الصورة'], 400);
+  $w0 = imagesx($img); $h0 = imagesy($img); $side = min($w0, $h0);
+  $out = imagecreatetruecolor(224, 224);
+  imagecopyresampled($out, $img, 0, 0, intdiv($w0 - $side, 2), intdiv($h0 - $side, 2), 224, 224, $side, $side);
+  @mkdir(fh_facesDir(), 0750, true);
+  imagejpeg($out, fh_faceFile(), 92);
+  imagedestroy($img); imagedestroy($out);
+  @unlink(fh_facesDir() . '/owner-avatar.png');
+  fh_json(['ok' => true]);
+}
+if ($PATH === '/api/admin/face' && $METHOD === 'DELETE') {
+  if (!fh_isAdmin()) fh_json(['error' => 'unauthorized'], 401);
+  @unlink(fh_faceFile()); @unlink(fh_facesDir() . '/owner-avatar.png');
+  fh_json(['ok' => true]);
 }
 if ($PATH === '/api/admin/pin' && $METHOD === 'POST') {
   if (!fh_isAdmin()) fh_json(['error' => 'unauthorized'], 401);

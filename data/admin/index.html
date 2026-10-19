@@ -7,7 +7,7 @@
 <link rel="icon" href="/assets/logo/favicon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>لوحة التحكم — الفرات الحلوة</title>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--abyss:#073B57;--river:#1478A0;--clear:#2FB6D8;--aqua:#47D6D2;--gold:#E8A33D;--honey:#F5C86B;
 --bg:#F1F6FA;--card:#fff;--text:#0E2233;--t2:#5A7184;--line:#DCE8EF;--ok:#1FA463;--bad:#E05B4C;
@@ -16,8 +16,8 @@
 html{overscroll-behavior-y:none;-webkit-text-size-adjust:100%}
 html{overflow-y:scroll;scrollbar-gutter:stable}
 html,body{overscroll-behavior-x:none}
-body{margin:0;font-family:'Tajawal','Segoe UI',Tahoma,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.7}
-h1,h2,h3,h4{font-family:'Tajawal',sans-serif;margin:0 0 .5em}
+body{margin:0;font-family:'IBM Plex Sans Arabic','Tajawal','Segoe UI',Tahoma,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.75}
+h1,h2,h3,h4{font-family:'Alexandria','Tajawal',sans-serif;margin:0 0 .5em;font-weight:700}
 button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
 button,a,.tab,.iconbtn,.qty{touch-action:manipulation}
 a{color:var(--river)}
@@ -44,23 +44,23 @@ a{color:var(--river)}
 .top h1{font-size:1.45rem;margin:0}
 .top p{margin:0;color:var(--t2);font-size:.87rem}
 .acts{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
-.btn{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:999px;border:1.5px solid transparent;cursor:pointer;font-weight:700;font-family:'Tajawal';transition:.22s;background:var(--river);color:#fff;white-space:nowrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 24px;border-radius:999px;border:1.5px solid transparent;cursor:pointer;font-weight:700;font-family:'Alexandria','IBM Plex Sans Arabic',sans-serif;font-size:.95rem;min-height:48px;transition:.22s;background:var(--river);color:#fff;white-space:nowrap;box-shadow:0 6px 16px -8px rgba(7,59,87,.5)}
 .btn:hover{opacity:.93}
-.btn-gold{background:linear-gradient(135deg,var(--honey),var(--gold));color:#3A2607}
-.btn-ghost{background:#fff;border-color:var(--line);color:var(--t2)}
+.btn-gold{background:linear-gradient(135deg,#F0B44F,var(--gold));color:#2B1B04;font-weight:800}
+.btn-ghost{background:#fff;border-color:#C9D9E4;color:var(--abyss);font-weight:700}
 .btn-ghost:hover{border-color:var(--clear);color:var(--river)}
 .btn-bad{background:#fff;border-color:#F3C9C3;color:var(--bad)}
-.btn-sm{padding:7px 13px;font-size:.83rem}
+.btn-sm{padding:9px 16px;font-size:.86rem;min-height:42px}
 .btn-save{position:fixed;bottom:20px;inset-inline-start:20px;z-index:40;padding:14px 26px;font-size:1rem;box-shadow:0 16px 36px -12px rgba(7,59,87,.7)}
 @keyframes glow{0%,100%{box-shadow:0 16px 36px -12px rgba(7,59,87,.7)}50%{box-shadow:0 16px 44px -8px rgba(232,163,61,.95)}}
 
-.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;margin-bottom:16px;box-shadow:0 6px 20px -14px rgba(7,59,87,.4)}
+.card{background:#fff;border:1px solid #E4EDF2;border-radius:18px;padding:22px 24px;margin-bottom:16px;box-shadow:0 10px 30px -20px rgba(7,59,87,.35)}
 .card h3{font-size:1.05rem;display:flex;align-items:center;gap:8px;margin-bottom:14px}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:13px}
 .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:13px}
 .f{display:grid;gap:5px;margin-bottom:11px}
-.f>span{font-size:.8rem;font-weight:700;color:var(--t2)}
-.f input,.f select,.f textarea{width:100%;padding:10px 12px;border-radius:10px;border:1.5px solid var(--line);background:#fff;transition:.2s}
+.f>span{font-size:.86rem;font-weight:700;color:#3E566A}
+.f input,.f select,.f textarea{width:100%;padding:13px 15px;border-radius:13px;border:1.5px solid #D7E2EA;background:#F8FAFC;transition:.2s}
 .f input:focus,.f select:focus,.f textarea:focus{outline:0;border-color:var(--clear);box-shadow:0 0 0 3px rgba(47,182,216,.15)}
 .f textarea{resize:vertical;min-height:76px}
 .f small{color:var(--t2);font-size:.74rem}
@@ -144,10 +144,8 @@ a{color:var(--river)}
 .cgroup-h{display:flex;justify-content:space-between;align-items:center;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:9px 13px;font-size:.9rem;margin-bottom:8px}
 .cgroup-h b{font-weight:800}
 .cgroup-h span{background:#fff;border:1px solid var(--line);border-radius:999px;padding:2px 11px;font-weight:700;font-size:.78rem}
-.crow-over{background:rgba(229,72,77,.07);border-inline-start:4px solid #e5484d;border-radius:8px}
-.crow-soon{background:rgba(245,166,35,.09);border-inline-start:4px solid #f5a623;border-radius:8px}
-.crow-mid,.crow-ok{border-inline-start:4px solid #30a46c;border-radius:8px}
-.crow-none{border-inline-start:4px solid var(--line);border-radius:8px;opacity:.9}
+.crow{background:#fff;border:1px solid #E4EDF2}
+.crow-over,.crow-soon,.crow-mid,.crow-ok,.crow-none{border-radius:14px}
 .btn-danger{color:#e5484d;border-color:rgba(229,72,77,.4)}
 .btn-danger:hover{background:#e5484d;color:#fff;border-color:#e5484d}
 
@@ -206,6 +204,9 @@ a{color:var(--river)}
 #pTbl tbody td[colspan],#custTbl tbody td[colspan]{display:block;text-align:center;color:var(--t2);padding:26px 10px}
 .scroll{overflow:visible}
 #pTbl .rowacts,#custTbl .rowacts{justify-content:flex-end;flex-wrap:wrap}
+.late-tag{display:inline-flex;align-items:center;gap:7px;background:#D93025;color:#fff;font-weight:800;font-size:.8rem;font-family:'Alexandria',sans-serif;padding:6px 18px;margin-top:6px;border-radius:5px;clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);white-space:nowrap}
+.late-tag svg{flex:none;fill:#fff}
+#btnBack{transition:opacity .2s}
 }
 </style>
 </head>
@@ -249,6 +250,9 @@ a{color:var(--river)}
       <div><h1 id="pageTitle">نظرة عامة</h1><p id="pageDesc">ملخص محتوى الموقع</p></div>
       <div class="acts">
         <span class="save-state" id="saveState"></span>
+        <button class="btn btn-ghost btn-sm" id="btnBack" hidden style="min-width:112px">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          رجوع</button>
         <button class="btn btn-ghost btn-sm" id="btnReload">إعادة تحميل</button>
       </div>
     </div>
@@ -266,7 +270,7 @@ a{color:var(--river)}
 
     <!-- الإعدادات -->
     <section class="pane" data-p="settings">
-      <div class="card" id="pinWarn" style="border:2px solid #E05B4C;background:#FFF4F2">
+      <div class="card" id="pinWarn" style="border:1px solid #E8D4D0;background:#FFF6F4">
         <h3>غيّر رمز الدخول قبل الإطلاق</h3>
               </div>
       <div class="card">
@@ -276,6 +280,21 @@ a{color:var(--river)}
           <label class="f"><span>أعد كتابة الرمز</span><input id="pinNew2" type="password" inputmode="numeric" placeholder="••••" autocomplete="new-password"></label>
         </div>
         <button class="btn btn-gold" id="btnPin" style="margin-top:10px">حفظ رمز الدخول</button>
+      </div>
+      <div class="card">
+        <h3>طريقة الدخول إلى اللوحة</h3>
+        <p style="color:var(--t2);font-size:.86rem;margin:0 0 13px">اختر ما يناسبك: الرمز وحده، أو كلمة المرور البصرية (تختار صورتك من تسعة وجوه في شاشة الدخول — مناسبة للجوال)، أو الاثنان معًا للأمان الأعلى. صورتك تُحفظ داخل سيرفرك ولا تغادره إلى أي جهة.</p>
+        <div class="grid3">
+          <label class="check"><input type="radio" name="loginMode" data-s="loginMode" value="pin"><span>رمز الدخول فقط (الافتراضي)</span></label>
+          <label class="check"><input type="radio" name="loginMode" data-s="loginMode" value="face"><span>صورة وجهي فقط</span></label>
+          <label class="check"><input type="radio" name="loginMode" data-s="loginMode" value="both"><span>وجهي + الرمز (أقوى)</span></label>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:15px">
+          <button type="button" class="btn btn-ghost btn-sm" id="btnFaceUp">ارفع صورة وجهك</button>
+          <button type="button" class="btn btn-ghost btn-sm btn-danger" id="btnFaceDel">حذف الصورة</button>
+          <input type="file" id="faceFile" accept="image/jpeg,image/png,image/webp" hidden>
+          <span id="faceState" style="font-size:.86rem;color:var(--t2)"></span>
+        </div>
       </div>
       <div class="card">
         <h3>الشعار (اللوقو)</h3>
@@ -389,8 +408,8 @@ a{color:var(--river)}
         <h3>المنتجات <span class="badge b-mut" id="pCount"></span></h3>
         <div class="acts sp" style="margin-bottom:14px">
           <button class="btn btn-gold btn-sm" id="addP">+ إضافة منتج</button>
-          <input id="pSearch" placeholder="ابحث بالاسم…" style="padding:9px 14px;border-radius:999px;border:1.5px solid var(--line);min-width:220px">
-          <select id="pFilter" style="padding:9px 14px;border-radius:999px;border:1.5px solid var(--line)"></select>
+          <input id="pSearch" placeholder="ابحث بالاسم…" style="padding:11px 18px;border-radius:13px;border:1.5px solid #D7E2EA;background:#F8FAFC;min-width:220px">
+          <select id="pFilter" style="padding:11px 18px;border-radius:13px;border:1.5px solid #D7E2EA;background:#F8FAFC"></select>
         </div>
         <div class="scroll"><table class="tbl" id="pTbl">
           <thead><tr><th></th><th>المنتج</th><th>القسم</th><th>السعر</th><th>قبل الخصم</th><th>الشارة</th><th>التوفر</th><th></th></tr></thead>
@@ -434,8 +453,8 @@ a{color:var(--river)}
                 <div class="acts sp" style="margin-bottom:14px">
           <button class="btn btn-gold btn-sm" id="custAdd">+ إضافة عميل</button>
           <div style="display:flex;gap:9px;align-items:center;flex-wrap:wrap;justify-content:center">
-            <input id="custSearch" placeholder="ابحث بالاسم أو الجوال…" style="padding:9px 14px;border-radius:999px;border:1.5px solid var(--line);min-width:200px">
-            <select id="custFilter" style="padding:9px 14px;border-radius:999px;border:1.5px solid var(--line)">
+            <input id="custSearch" placeholder="ابحث بالاسم أو الجوال…" style="padding:11px 18px;border-radius:13px;border:1.5px solid #D7E2EA;background:#F8FAFC;min-width:200px">
+            <select id="custFilter" style="padding:11px 14px;border-radius:13px;border:1.5px solid #D7E2EA;background:#F8FAFC">
               <option value="all">كل العملاء</option>
               <option value="over">المتأخرون (أحمر)</option>
               <option value="soon">استحقاق خلال 30 يوم</option>
@@ -636,20 +655,31 @@ async function checkMeta(){
     if(!r.ok)return;
     const m=await r.json();
     const w=$('#pinWarn'); if(w) w.style.display=m.defaultPin?'':'none';
+    const fs=$('#faceState'); if(fs){ fs.textContent=m.hasFace?'✓ صورتك محفوظة وتُستخدم في شاشة الدخول':'لا صورة محفوظة بعد — ارفعها لتفعيل الدخول بالوجه'; fs.style.color=m.hasFace?'var(--ok)':'var(--t2)'; }
   }catch(e){}
 }
 
 /* ---------- التبويبات ---------- */
 const TITLES={dash:['نظرة عامة','ملخص محتوى الموقع'],settings:['بيانات الموقع','الاسم والتواصل والأرقام'],hours:['أوقات العمل','تتحكم في حالة «مفتوح الآن»'],products:['المنتجات','أضف وعدّل الأسعار والمواصفات'],categories:['الأقسام','تصنيفات المنتجات'],services:['الخدمات','ما تقدمه للعملاء'],faqs:['الأسئلة الشائعة','إجابات جاهزة'],cust:['العملاء والتذكيرات','مواعيد تغيير الفلاتر لكل عميل — تلقائياً'],stats:['إحصائيات الزيارات','شو يشوف الناس وين — بيانات لتطوير قراراتك']};
-function tab(t){
+const HIST=[];let CURTAB='dash';
+function tab(t,silent){
+  if(!silent&&t!==CURTAB){HIST.push({t:CURTAB,y:window.scrollY});if(HIST.length>24)HIST.shift();}
+  CURTAB=t;
   $$('#nav a').forEach(a=>a.classList.toggle('on',a.dataset.t===t));
   $$('.pane').forEach(p=>p.classList.toggle('on',p.dataset.p===t));
   const x=TITLES[t]||['',''];$('#pageTitle').textContent=x[0];$('#pageDesc').textContent=x[1];
   if(t==='dash')renderDash();
   if(t==='cust')renderCust();
   if(t==='stats')renderStats();
+  const bb=$('#btnBack');if(bb)bb.hidden=!HIST.length;
   window.scrollTo({top:0});
 }
+$('#btnBack').addEventListener('click',()=>{
+  const h=HIST.pop();if(!h)return;
+  tab(h.t,true);
+  requestAnimationFrame(()=>window.scrollTo({top:h.y}));
+  const bb=$('#btnBack');if(bb)bb.hidden=!HIST.length;
+});
 $('#nav').addEventListener('click',e=>{const a=e.target.closest('a');if(a)tab(a.dataset.t);});
 
 /* ---------- الإعدادات ---------- */
@@ -658,7 +688,7 @@ function bindAll(){
   if(D.settings.font==null)D.settings.font='tajawal';
   $$('[data-s]').forEach(el=>{
     const p=el.dataset.s, v=get(D.settings,p);
-    if(el.type==='checkbox')el.checked=!!v; else el.value=(v==null?'':v);
+    if(el.type==='checkbox')el.checked=!!v; else if(el.type==='radio')el.checked=(String(v)===el.value); else el.value=(v==null?'':v);
   });
   renderHours(); renderProducts(); renderCats(); renderServices(); renderFaqs(); logoPrev('mark'); logoPrev('full');
   const sel=$('#f_category'); sel.innerHTML=D.categories.map(c=>`<option value="${c.id}">${c.name}</option>`).join('');
@@ -1111,7 +1141,8 @@ async function renderCust(){
       :e.days<0?`<span class="badge b-danger">متأخر ${Math.abs(e.days)} يوم</span>`
       :e.days<=30?`<span class="badge b-warn">باقي ${e.days} يوم</span>`
       :`<span class="badge b-ok">سليم · باقي ${e.days} يوم</span>`;
-    const due=e?`<b style="direction:ltr;display:inline-block">${e.due}</b><br><small style="color:var(--t2)">${PART_AR[e.part]}<br>آخر تغيير <span style="direction:ltr;display:inline-block">${e.last}</span></small>`:'<span style="color:var(--t2)">—</span>';
+    const lateNow=e&&e.days<0&&!holdOn(c);
+    const due=e?`<b style="direction:ltr;display:inline-block">${e.due}</b><br><small style="color:var(--t2)">${PART_AR[e.part]}<br>آخر تغيير <span style="direction:ltr;display:inline-block">${e.last}</span></small>${lateNow?`<br><span class="late-tag"><svg width="11" height="16" viewBox="0 0 12 18" aria-hidden="true"><path d="M8 0 1 10h4l-1.6 8L12 7.5H7.4z"/></svg>متأخر ${Math.abs(e.days)} يوم</span>`:''}`:'<span style="color:var(--t2)">—</span>';
     return `<tr>
       <td data-l="العميل"><b${e&&e.days<0&&!holdOn(c)?' class="nm-over"':''}>${cesc(c.name)}</b>${holdOn(c)?`<br><small style="color:#8a5a00">ملاحظة التأجيل: ${cesc(c.hold.note||'بدون ملاحظة')}</small>`:c.notes?`<br><small style="color:var(--t2)">${cesc(c.notes)}</small>`:''}</td>
       <td data-l="الجوال" style="direction:ltr;text-align:right;white-space:nowrap">${cesc(c.phone||'—')}</td>
@@ -1281,6 +1312,24 @@ $('#btnPin').addEventListener('click',async()=>{
     toast('تم تغيير رمز الدخول','ok');
   }catch(e){toast('خطأ: '+e.message,'bad');}
   btn.disabled=false;
+});
+/* ——— صورة الدخول بالوجه ——— */
+$('#btnFaceUp').addEventListener('click',()=>$('#faceFile').click());
+$('#faceFile').addEventListener('change',async ev=>{
+  const f=ev.target.files&&ev.target.files[0]; if(!f)return;
+  const fd=new FormData(); fd.append('img',f);
+  try{
+    const r=await fetch('/api/admin/face',{method:'POST',headers:authHeaders(),body:fd});
+    const j=await r.json().catch(()=>({}));
+    toast(j.ok?'تم حفظ صورتك — ستظهر في شاشة الدخول':'ما قُبلت الصورة: '+(j.error||'خطأ'),j.ok?'ok':'bad');
+    checkMeta();
+  }catch(err){toast('انقطع الاتصال بالسيرفر','bad');}
+  ev.target.value='';
+});
+$('#btnFaceDel').addEventListener('click',async()=>{
+  if(!confirm('حذف صورة الوجه من شاشة الدخول؟'))return;
+  try{ await fetch('/api/admin/face',{method:'DELETE',headers:authHeaders()}); toast('حُذفت الصورة','ok'); }catch(e){}
+  checkMeta();
 });
 document.addEventListener('keydown',e=>{
   if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'){e.preventDefault();save(false);}
