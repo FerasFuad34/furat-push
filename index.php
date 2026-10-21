@@ -15,7 +15,13 @@ require_once __DIR__ . '/app/card.php';
 if (PHP_SAPI === 'cli-server') {
   $p = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
   $file = __DIR__ . $p;
-  if ($p !== '/' && is_file($file) && strpos(realpath($file), realpath(__DIR__)) === 0) return false;
+  /* خادم التطوير: التمرير لملفات الواجهة فقط — data/ وapp/ تُرفض كما في الإنتاج */
+  if ($p !== '/' && is_file($file) && strpos(realpath($file), realpath(__DIR__)) === 0) {
+    if (strpos($p, '/assets/') === 0) return false;
+    if ($p === '/sw.js' || $p === '/manifest.webmanifest') return false;
+    if (preg_match('#^/data/admin/[\w.-]+\.html$#', $p)) { readfile($file); exit; }
+    http_response_code(403); header('Content-Type: text/plain; charset=utf-8'); echo '403 — forbidden'; exit;
+  }
 }
 
 header_remove('X-Powered-By');
